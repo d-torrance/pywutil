@@ -17,7 +17,10 @@ cdef class WMArray:
         if len(args) == 0:
                 self._c_array = cwutil.WMCreateArray(0)
         elif len(args) == 1:
-            if isinstance(args[0], collections.abc.Iterable):
+            if isinstance(args[0], WMArray):
+                self._c_array = cwutil.WMCreateArrayWithArray(
+                    (<WMArray>args[0])._c_array)
+            elif isinstance(args[0], collections.abc.Iterable):
                 self._c_array = cwutil.WMCreateArray(0)
                 for x in args[0]:
                     self.append(x)
@@ -36,6 +39,9 @@ cdef class WMArray:
                     self.append(args[0][i])
         else:
             raise TypeError("expected an iterable or WMArray")
+
+    def copy(self):
+        return WMArray(self)
 
     def clear(self):
         cwutil.WMEmptyArray(self._c_array)

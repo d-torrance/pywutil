@@ -9,7 +9,7 @@ cdef extern from "WINGs/WUtil.h":
     WMArray* WMCreateArray(int initialSize)
     # WMArray* WMCreateArrayWithDestructor(int initialSize,
     #                                      WMFreeDataProc *destructor)
-    # WMArray* WMCreateArrayWithArray(WMArray *array)
+    WMArray* WMCreateArrayWithArray(WMArray *array)
     void WMEmptyArray(WMArray *array)
     void WMFreeArray(WMArray *array)
     int WMGetArrayItemCount(WMArray *array)
