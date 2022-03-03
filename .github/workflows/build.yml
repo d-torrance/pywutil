@@ -8,7 +8,7 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get -y update
-          sudo apt-get -y install cython3 libwutil-dev
+          sudo apt-get -y install cython3 libwings-dev
       - name: Build
         run: |
           python3 setup.py test
