@@ -2,6 +2,10 @@ cdef extern from "WINGs/WUtil.h":
     ctypedef struct WMArray:
         pass
 
+    ctypedef struct WMRange:
+        int position
+        int count
+
     WMArray* WMCreateArray(int initialSize)
     # WMArray* WMCreateArrayWithDestructor(int initialSize,
     #                                      WMFreeDataProc *destructor)
@@ -23,7 +27,7 @@ cdef extern from "WINGs/WUtil.h":
     # void WMSortArray(WMArray *array, WMCompareDataProc *comparer)
     # void WMMapArray(WMArray *array, void (*function)(void*, void*),
     #                 void *data)
-    # WMArray* WMGetSubarrayWithRange(WMArray* array, WMRange aRange)
+    WMArray* WMGetSubarrayWithRange(WMArray* array, WMRange aRange)
     void* WMArrayFirst(WMArray *array, int *iter)
     void* WMArrayNext(WMArray *array, int *iter)
     # void* WMArrayPrevious(WMArray *array, WMArrayIterator *iter)
