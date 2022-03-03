@@ -3,6 +3,6 @@ from distutils.extension import Extension
 from Cython.Build import cythonize
 
 setup(
-    ext_modules = cythonize([Extension("wutil", ["wutil.pyx"],
+    ext_modules = cythonize([Extension("wutil", ["src/*.pyx"],
                                        libraries=["WUtil"])])
 )
