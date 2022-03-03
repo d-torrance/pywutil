@@ -44,12 +44,18 @@ cdef class WMArray:
         if ret == 0:
             raise IndexError("array index out of range")
 
-    def __getitem__(self, int index):
-        ret = cwutil.WMGetFromArray(self._c_array, index)
-        if ret is cython.NULL:
-            raise IndexError("array index out of range")
+    def __getitem__(self, index):
+        if isinstance(index, int):
+            ret = cwutil.WMGetFromArray(self._c_array, <int>index)
+            if ret is cython.NULL:
+                raise IndexError("array index out of range")
+            else:
+                return <object>ret
+        elif isinstance(index, slice):
+            raise NotImplementedError("slices not implemented yet")
         else:
-            return <object>ret
+            raise TypeError("array indices must be integers or slices, "
+                            f"not {type(index).__name__}")
 
     def pop(self):
         ret = cwutil.WMPopFromArray(self._c_array)
