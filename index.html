@@ -1,0 +1,169 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Welcome to pywutil’s documentation! &#8212; pywutil  documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="welcome-to-pywutil-s-documentation">
+<h1>Welcome to pywutil’s documentation!<a class="headerlink" href="#welcome-to-pywutil-s-documentation" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></li>
+<li><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></li>
+<li><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></li>
+</ul>
+<span class="target" id="module-wutil"></span><dl class="class">
+<dt id="wutil.WMArray">
+<em class="property">class </em><code class="descclassname">wutil.</code><code class="descname">WMArray</code><a class="headerlink" href="#wutil.WMArray" title="Permalink to this definition">¶</a></dt>
+<dd><p>Dynamically resized array.  The interface is consistent with Python lists.</p>
+<dl class="method">
+<dt id="wutil.WMArray.append">
+<code class="descname">append</code><span class="sig-paren">(</span><em>self</em>, <em>item</em><span class="sig-paren">)</span><a class="headerlink" href="#wutil.WMArray.append" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add <em>item</em> to the end of the array.
+Wrapper around <em>WMAddToArray</em>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="wutil.WMArray.clear">
+<code class="descname">clear</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#wutil.WMArray.clear" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove all elements of the array.
+Wrapper around <em>WMEmptryArray</em>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="wutil.WMArray.copy">
+<code class="descname">copy</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#wutil.WMArray.copy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a copy of the array.
+Wrapper around <em>WMCreateArrayWithArray</em>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="wutil.WMArray.count">
+<code class="descname">count</code><span class="sig-paren">(</span><em>self</em>, <em>item</em><span class="sig-paren">)</span><a class="headerlink" href="#wutil.WMArray.count" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the number of instances of <em>item</em> in the array.
+Wrapper around <em>WMCountInArray</em>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="wutil.WMArray.extend">
+<code class="descname">extend</code><span class="sig-paren">(</span><em>self</em>, <em>WMArray other</em><span class="sig-paren">)</span><a class="headerlink" href="#wutil.WMArray.extend" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add all elements of <em>other</em> at the end of the array.
+Wrapper around <em>WMAppendArray</em>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="wutil.WMArray.insert">
+<code class="descname">insert</code><span class="sig-paren">(</span><em>self</em>, <em>int index</em>, <em>item</em><span class="sig-paren">)</span><a class="headerlink" href="#wutil.WMArray.insert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add <em>item</em> to the array at position <em>index</em>.
+Wrapper around <em>WMInsertInArray</em>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="wutil.WMArray.pop">
+<code class="descname">pop</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#wutil.WMArray.pop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove and return the item at the end of the array.
+Wrapper around <em>WMPopFromArray</em>.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="wutil.WMArrayIterator">
+<em class="property">class </em><code class="descclassname">wutil.</code><code class="descname">WMArrayIterator</code><span class="sig-paren">(</span><em>WMArray array</em><span class="sig-paren">)</span><a class="headerlink" href="#wutil.WMArrayIterator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Iterator for WMArray objects.
+The <em>next</em> method is a wrapper around <em>WMArrayFirst</em> and <em>WMArrayNext</em>.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="wutil.WMBagIterator">
+<em class="property">class </em><code class="descclassname">wutil.</code><code class="descname">WMBagIterator</code><span class="sig-paren">(</span><em>WMBag bag</em><span class="sig-paren">)</span><a class="headerlink" href="#wutil.WMBagIterator" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="#">pywutil</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2022, Doug Torrance.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="_sources/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
