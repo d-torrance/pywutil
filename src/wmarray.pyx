@@ -1,6 +1,5 @@
 import collections.abc
 import cython
-from cpython.ref cimport PyObject
 cimport cwutil
 
 cdef class WMRange:
