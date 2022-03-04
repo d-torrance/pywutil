@@ -13,7 +13,7 @@ jobs:
         run: |
           python3 setup.py test
       - name: Generate documentation
-        run: make -C html
+        run: make -C doc html
       - name: Deploy documentation
         uses: JamesIves/github-pages-deploy-action@v4.2.5
         with:
