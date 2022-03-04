@@ -12,3 +12,10 @@ jobs:
       - name: Build
         run: |
           python3 setup.py test
+      - name: Generate documentation
+        run: make -C html
+      - name: Deploy documentation
+        uses: JamesIves/github-pages-deploy-action@v4.2.5
+        with:
+          branch: gh-pages
+          folder: doc/_build/html
