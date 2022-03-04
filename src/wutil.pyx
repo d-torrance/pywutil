@@ -10,6 +10,9 @@ cdef class WMRange:
         self._c_range.count = count
 
 cdef class WMArray:
+    """
+    Dynamically resized array.  The interface is consistent with Python lists.
+    """
     cdef cwutil.WMArray * _c_array
 
     def __cinit__(self, *args):
@@ -40,9 +43,17 @@ cdef class WMArray:
             raise TypeError("expected an iterable or WMArray")
 
     def copy(self):
+        """
+        Returns a copy of the array.
+        Wrapper around *WMCreateArrayWithArray*.
+        """
         return WMArray(self)
 
     def clear(self):
+        """
+        Remove all elements of the array.
+        Wrapper around *WMEmptryArray*.
+        """
         cwutil.WMEmptyArray(self._c_array)
 
     def __dealloc__(self):
@@ -52,12 +63,24 @@ cdef class WMArray:
         return cwutil.WMGetArrayItemCount(self._c_array)
 
     def extend(self, WMArray other):
+        """
+        Add all elements of *other* at the end of the array.
+        Wrapper around *WMAppendArray*.
+        """
         cwutil.WMAppendArray(self._c_array, other._c_array)
 
     def append(self, item):
+        """
+        Add *item* to the end of the array.
+        Wrapper around *WMAddToArray*.
+        """
         cwutil.WMAddToArray(self._c_array, <void *>item)
 
     def insert(self, int index, item):
+        """
+        Add *item* to the array at position *index*.
+        Wrapper around *WMInsertInArray*.
+        """
         cwutil.WMInsertInArray(self._c_array, index, <void*>item)
 
     def __setitem__(self, int index, item):
@@ -84,6 +107,10 @@ cdef class WMArray:
                             f"not {type(index).__name__}")
 
     def pop(self):
+        """
+        Remove and return the item at the end of the array.
+        Wrapper around *WMPopFromArray*.
+        """
         ret = cwutil.WMPopFromArray(self._c_array)
         if ret is cython.NULL:
             raise IndexError("pop from empty array")
@@ -91,6 +118,10 @@ cdef class WMArray:
             return <object>ret
 
     def count(self, item):
+        """
+        Return the number of instances of *item* in the array.
+        Wrapper around *WMCountInArray*.
+        """
         return cwutil.WMCountInArray(self._c_array, <void *>item)
 
     def __iter__(self):
@@ -100,6 +131,10 @@ cdef class WMArray:
         return f"WMArray({list(self)})"
 
 cdef class WMArrayIterator:
+    """
+    Iterator for WMArray objects.
+    The *next* method is a wrapper around *WMArrayFirst* and *WMArrayNext*.
+    """
     cdef int index
     cdef cwutil.WMArray *_c_array
 

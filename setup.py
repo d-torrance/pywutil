@@ -4,6 +4,7 @@ from Cython.Build import cythonize
 
 setup(
     ext_modules = cythonize([Extension("wutil", ["src/*.pyx"],
-                                       libraries=["WUtil"])]),
+                                       libraries=["WUtil"])],
+                            compiler_directives={"embedsignature": True}),
     test_suite = "tests"
 )
