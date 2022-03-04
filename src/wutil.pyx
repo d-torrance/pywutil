@@ -119,3 +119,85 @@ cdef class WMArrayIterator:
             raise StopIteration
         else:
             return <object>ret
+
+cdef class WMBag:
+    cdef cwutil.WMBag *_c_bag
+
+    def __cinit__(self):
+        self._c_bag = cwutil.WMCreateTreeBag()
+        # getting segfaults if I tree to deal with arguments
+
+    def __len__(self):
+        return cwutil.WMGetBagItemCount(self._c_bag)
+
+    def extend(self, WMBag other):
+        cwutil.WMAppendBag(self._c_bag, other._c_bag)
+
+    def append(self, item):
+        cwutil.WMPutInBag(self._c_bag, <void *>item)
+
+    def insert(self, int index, item):
+        cwutil.WMInsertInBag(self._c_bag, index, <void*>item)
+
+    def __delitem__(self, int index):
+        ret = cwutil.WMDeleteFromBag(self._c_bag, index)
+        if ret == 0:
+            raise IndexError("bag index out of range")
+
+    def remove(self, item):
+        ret = cwutil.WMRemoveFromBag(self._c_bag, <void *>item)
+        if ret == 0:
+            raise ValueError("bag.remove(x): x not in bag")
+
+    def __getitem__(self, index):
+        if isinstance(index, int):
+            ret = cwutil.WMGetFromBag(self._c_bag, <int>index)
+            if ret is cython.NULL:
+                raise IndexError("bag index out of range")
+            else:
+                return <object>ret
+        elif isinstance(index, slice):
+            raise NotImplementedError("bag slicing not implemented")
+        else:
+            raise TypeError("bag indices must be integers or slices, "
+                            f"not {type(index).__name__}")
+
+    def __setitem__(self, int index, item):
+        ret = cwutil.WMReplaceInBag(self._c_bag, index, <void*>item)
+        if ret is cython.NULL:
+            raise IndexError("bag index out of range")
+
+    def clear(self):
+        cwutil.WMEmptyBag(self._c_bag)
+
+    def __dealloc__(self):
+        cwutil.WMFreeBag(self._c_bag)
+
+    def count(self, item):
+        return cwutil.WMCountInBag(self._c_bag, <void *>item)
+
+    def __iter__(self):
+        return WMBagIterator(self)
+
+cdef class WMBagIterator:
+    cdef void *ptr
+    cdef cwutil.WMBag *_c_bag
+    cdef bint first
+
+    def __init__(self, WMBag bag):
+        self._c_bag = bag._c_bag
+        self.first = True
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self.first:
+            ret = cwutil.WMBagFirst(self._c_bag, &self.ptr)
+            self.first = False
+        else:
+            ret = cwutil.WMBagNext(self._c_bag, &self.ptr)
+        if ret is cython.NULL:
+            raise StopIteration
+        else:
+            return <object>ret

@@ -31,3 +31,31 @@ cdef extern from "WINGs/WUtil.h":
     void* WMArrayFirst(WMArray *array, int *iter)
     void* WMArrayNext(WMArray *array, int *iter)
     # void* WMArrayPrevious(WMArray *array, WMArrayIterator *iter)
+
+    ctypedef struct WMBag:
+        pass
+
+    WMBag* WMCreateTreeBag()
+    # WMBag* WMCreateTreeBagWithDestructor(WMFreeDataProc *destructor)
+    int WMGetBagItemCount(WMBag *bag)
+    void WMAppendBag(WMBag *bag, WMBag *other)
+    void WMPutInBag(WMBag *bag, void *item)
+    void WMInsertInBag(WMBag *bag, int index, void *item)
+    # int WMEraseFromBag(WMBag *bag, int index)
+    int WMDeleteFromBag(WMBag *bag, int index)
+    int WMRemoveFromBag(WMBag *bag, void *item)
+    void* WMGetFromBag(WMBag *bag, int index)
+    void* WMReplaceInBag(WMBag *bag, int index, void *item)
+    # void WMSortBag(WMBag *bag, WMCompareDataProc *comparer)
+    void WMEmptyBag(WMBag *bag)
+    void WMFreeBag(WMBag *bag)
+    # void WMMapBag(WMBag *bag, void (*function)(void*, void*), void *data)
+    int WMGetFirstInBag(WMBag *bag, void *item)
+    int WMCountInBag(WMBag *bag, void *item)
+    # int WMFindInBag(WMBag *bag, WMMatchDataProc *match, void *cdata)
+    void* WMBagFirst(WMBag *bag, void **ptr);
+    # void* WMBagLast(WMBag *bag, WMBagIterator *ptr);
+    void* WMBagNext(WMBag *bag, void **ptr)
+    # void* WMBagPrevious(WMBag *bag, WMBagIterator *ptr)
+    # void* WMBagIteratorAtIndex(WMBag *bag, int index, WMBagIterator *ptr)
+    # int WMBagIndexForIterator(WMBag *bag, WMBagIterator ptr)
